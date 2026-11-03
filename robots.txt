@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://jojoagogog-beep.github.io/pal-ai-automation-qa-checklist/sitemap.xml

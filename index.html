@@ -1,0 +1,161 @@
+<!doctype html>
+<html lang="en"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Free AI Automation Acceptance Test Checklist & UAT Matrix | PAL</title>
+<meta name="description" content="Free, private AI automation UAT checklist. Track 20 acceptance tests for accuracy, prompt injection, fallback, error handling, privacy, logging and production release. Export your results to CSV.">
+<meta name="robots" content="index,follow">
+<link rel="canonical" href="https://jojoagogog-beep.github.io/pal-ai-automation-qa-checklist/">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Free AI Automation Acceptance Testing Checklist">
+<meta property="og:description" content="20 practical UAT checks with CSV export. No signup, no tracking, no uploads.">
+<meta property="og:url" content="https://jojoagogog-beep.github.io/pal-ai-automation-qa-checklist/">
+<meta name="theme-color" content="#172a34">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"What is an AI automation acceptance test?","acceptedAnswer":{"@type":"Answer","text":"A documented set of pass/fail scenarios that verifies an AI workflow behaves as intended, including boundary conditions, error handling and required human review before deployment."}},{"@type":"Question","name":"Does this checklist upload workflow data?","acceptedAnswer":{"@type":"Answer","text":"No. The checklist runs in your browser and exports a local CSV file. This page does not collect inputs or send them to a server."}},{"@type":"Question","name":"Does passing all 20 tests guarantee an AI automation is safe?","acceptedAnswer":{"@type":"Answer","text":"No. The checks are a starting framework, not certification. Adapt the test plan to your system, data sensitivity, laws, stakeholders and operational risk."}}]}</script>
+<style>
+:root{color-scheme:light;--ink:#1c323c;--muted:#60727b;--line:#dce8e7;--teal:#00695f;--dark:#122b32;--bg:#f4f8f6}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;color:var(--ink);background:var(--bg);font:15px/1.6 system-ui,-apple-system,"Segoe UI",sans-serif}
+a{color:inherit}a:hover{text-decoration:underline}a:focus-visible,button:focus-visible,input:focus-visible,textarea:focus-visible{outline:3px solid #8ed1c4;outline-offset:3px}
+.container{max-width:1090px;width:calc(100% - 36px);margin:auto}
+header{background:var(--dark);color:white}.nav{height:75px;display:flex;align-items:center;justify-content:space-between;gap:16px;border-bottom:1px solid #42605b60}
+.brand{font-weight:800;font-size:12px;letter-spacing:.16em;color:#bbf2e3;text-decoration:none}
+nav a{color:#c6e1dc;text-decoration:none;margin-left:22px;font-size:13px}.hero{padding:88px 0 91px;background:radial-gradient(ellipse 55% 80% at 90% 10%,#254d52,transparent 80%),var(--dark)}
+.eyebrow{color:#8edbc4;text-transform:uppercase;letter-spacing:.2em;font-weight:850;font-size:12px}
+h1{font-size:clamp(36px,5.3vw,65px);line-height:1.1;letter-spacing:-.052em;margin:18px 0 18px;max-width:850px}
+.lead{max-width:650px;color:#c8e0dc;font-size:18px;margin:0 0 28px}.primary{display:inline-flex;align-items:center;justify-content:center;text-decoration:none;border:0;border-radius:10px;background:#b5eee0;color:#163b39;font-weight:800;padding:14px 22px;cursor:pointer}.primary:hover{background:#d5ffef;text-decoration:none}
+.pills{margin-top:28px;display:flex;flex-wrap:wrap;gap:9px}.pills span{font-size:12px;border-radius:50px;border:1px solid #a5c7c375;padding:6px 12px;color:#d1e9e5}
+main{padding:52px 0 78px}.layout{display:grid;grid-template-columns:minmax(0,1.64fr) minmax(270px,0.84fr);gap:26px;align-items:start}
+h2{font-size:29px;line-height:1.18;letter-spacing:-.03em;margin:4px 0 12px}h3{font-size:19px;margin:0 0 7px}
+.kicker{color:var(--teal);font-weight:800;letter-spacing:.15em;text-transform:uppercase;font-size:11px}
+.copy{color:var(--muted);margin:0 0 23px}.panel{border:1px solid var(--line);background:white;border-radius:16px;padding:26px}
+.checkgroup{border-top:1px solid var(--line);margin-top:19px;padding-top:17px}.checkgroup:first-of-type{border-top:0;padding-top:0;margin-top:0}
+.group-title{font-size:12px;letter-spacing:.12em;color:#147369;font-weight:850;text-transform:uppercase;margin:0 0 14px}
+.checkitem{display:grid;grid-template-columns:23px 1fr;gap:10px;align-items:start;margin-bottom:14px}.checkitem input[type=checkbox]{width:18px;height:18px;margin-top:4px;accent-color:#0e796b;cursor:pointer}
+.checkitem label{font-weight:700;cursor:pointer;font-size:14px;line-height:1.4;display:block}.help{color:#5f727b;font-size:12px;margin:4px 0 0;line-height:1.5}
+.evidence{width:100%;margin-top:7px;background:#fbfdfc;border:1px solid #dde7e5;border-radius:7px;padding:8px 9px;font:12px system-ui;color:#344a53}
+.sidebar{position:sticky;top:20px}.score{background:var(--dark);color:white;border-radius:16px;padding:26px}.score strong{display:block;font-size:48px;line-height:1;margin:7px 0;letter-spacing:-.04em}.score p{font-size:13px;color:#b7d0ca;margin:8px 0 18px}
+.progress{height:11px;background:#45615f;border-radius:20px;overflow:hidden}.bar{height:100%;background:#7bdbc5;width:0%;transition:width .2s}
+button{border:0;border-radius:9px;cursor:pointer;font-size:13px;font-weight:800;padding:12px 15px}.save{background:#a7ebdd;color:#143d38;width:100%}.save:hover{background:#d7fff5}
+.reset{background:transparent;color:#c4ded9;border:1px solid #54736c;width:100%;margin-top:8px}.reset:hover{background:#284e4b}
+.sidebox{background:white;border:1px solid var(--line);padding:23px;margin-top:17px;border-radius:15px}.sidebox p{color:var(--muted);font-size:13px;margin:6px 0 16px}
+.paid{display:block;border-radius:8px;background:#ecf5f1;color:#085c53;padding:11px 12px;font-size:13px;font-weight:800;text-decoration:none;margin:8px 0}.paid:hover{background:#d5efe5;text-decoration:none}
+.sidebox small{color:#687c80;font-size:11px}.section{margin:76px 0 0}
+.steps{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}.step{background:#eaf2ef;border:1px solid #d5e6e0;padding:23px;border-radius:13px}.step b{font-size:12px;color:#187467}.step p{font-size:13px;color:#60747b;margin:7px 0 0}
+.warning{border-left:4px solid #ab8550;background:#fff7e9;padding:16px 20px;margin-top:22px;color:#725a32;font-size:13px}
+.faq details{background:white;border:1px solid var(--line);padding:16px 18px;margin:12px 0;border-radius:10px}
+.faq summary{font-weight:800;cursor:pointer}.faq details p{color:var(--muted);font-size:13px;margin:10px 0 0}
+footer{background:#10252d;color:#aac4c1;padding:34px 0;font-size:12px}footer a{color:#d0f8ea}
+@media(max-width:850px){.layout{grid-template-columns:1fr}.sidebar{position:static}.steps{grid-template-columns:1fr}.hero{padding:67px 0 74px}}
+@media(max-width:480px){.container{width:calc(100% - 24px)}.nav{gap:8px}nav a{margin-left:10px}.hero h1{font-size:37px}.lead{font-size:16px}.panel{padding:17px}.score strong{font-size:40px}}
+</style></head>
+<body>
+<header><div class="container nav"><a class="brand" href="./">PRACTICAL AI LAB / PAL</a><nav aria-label="Primary"><a href="#checklist">Checklist</a><a href="#kits">Kits</a><a href="#faq">FAQ</a></nav></div>
+<div class="hero"><div class="container"><div class="eyebrow">Free template · Automated workflow QA</div>
+<h1>Before an AI agent goes live,<br>test what can go wrong.</h1>
+<p class="lead">A practical 20-point acceptance checklist for AI workflows, automation engineers and operations teams. Track pass/fail evidence, export a CSV test matrix, and identify release blockers — no signup required.</p>
+<a href="#checklist" class="primary">Start the free checklist ↓</a>
+<div class="pills"><span>20 UAT test cases</span><span>CSV export</span><span>Runs locally in your browser</span><span>No data uploads</span></div>
+</div></div></header>
+<main class="container">
+<div class="layout"><section id="checklist">
+<div class="kicker">Interactive release gate</div><h2>AI automation UAT checklist</h2>
+<p class="copy">Check an item only after you have tested it and collected evidence. Add a short note or ticket reference. Blank items remain unverified, not failed. Export the matrix for your project handoff.</p>
+<div class="panel"><div id="checklistContent" aria-label="20 acceptance tests"></div></div>
+</section>
+<aside class="sidebar"><div class="score">
+<div class="kicker" style="color:#9de3d2">Release readiness</div>
+<strong><span id="passed">0</span> / 20</strong>
+<p><span id="coverage">0%</span> verified · <span id="remaining">20</span> cases still open</p>
+<div class="progress" role="progressbar" aria-label="Verified acceptance tests" aria-valuemin="0" aria-valuemax="20" aria-valuenow="0" id="progress"><div class="bar" id="bar"></div></div>
+<p>Private session only. Nothing is saved or uploaded. Download the report before closing the tab.</p>
+<button class="save" id="export">Download QA matrix (.csv)</button>
+<button class="reset" id="reset">Clear all answers</button>
+</div>
+<div class="sidebox" id="kits"><div class="kicker">Paid templates</div><h3>Need a fuller test kit?</h3>
+<p>Use the free checklist now. For reusable documentation templates, sample acceptance cases, and audit handoff formats, see PAL's existing paid downloads.</p>
+<a class="paid" href="https://payhip.com/b/zZnhg" rel="noopener noreferrer">AI Automation Acceptance Test Kit · $29 ↗</a>
+<a class="paid" href="https://payhip.com/b/TPu1k" rel="noopener noreferrer">AI Customer Support QA Kit · $19 ↗</a>
+<a class="paid" href="https://payhip.com/b/xHNu5" rel="noopener noreferrer">AI Project Handoff Kit · $19 ↗</a>
+<small>Purchases, payment details and digital delivery are handled by Payhip, not this site. Prices observed November 2026; check live totals at checkout.</small>
+</div></aside></div>
+<section class="section" id="method"><div class="kicker">How to use it</div><h2>Move from a demo to a defensible sign-off.</h2>
+<div class="steps"><div class="step"><b>01 / SELECT</b><h3>Pick real test inputs</h3><p>Use realistic data and adversarial edge cases. Identify known failure modes, PII risks, and the human owner of consequential decisions.</p></div>
+<div class="step"><b>02 / EXECUTE</b><h3>Capture evidence</h3><p>Run each test with expected and observed outcomes. Attach local evidence references; do not paste passwords or private customer data here.</p></div>
+<div class="step"><b>03 / DECIDE</b><h3>Document release blockers</h3><p>Export the CSV, assign issues, verify fixes, and approve the release only against your organization's required acceptance criteria.</p></div></div>
+<div class="warning">Important: This checklist does not execute tests or certify safety automatically. It helps record human-verified results. The 20 checks are not an exhaustive regulatory, security or model-risk assessment.</div></section>
+<section id="faq" class="section faq"><div class="kicker">FAQ</div><h2>Common questions</h2>
+<details><summary>What is AI automation acceptance testing?</summary><p>It is a documented set of real-world pass/fail cases verifying that a workflow meets requirements, handles failures, protects data and provides necessary human oversight before release.</p></details>
+<details><summary>Does this page send test data to a server?</summary><p>No. All checkboxes and notes stay in the current browser tab. The downloadable CSV is generated locally. Avoid entering confidential personal data into this template anyway.</p></details>
+<details><summary>Can an all-green checklist guarantee production safety?</summary><p>No. Every workflow has different inputs, legal obligations and business risks. Apply appropriate engineering, privacy and security reviews as well as ongoing monitoring.</p></details>
+<details><summary>How is this different from the paid kit?</summary><p>This page offers 20 basic review gates and a CSV export. The paid kit offers a more complete set of reusable documentation templates and acceptance workflows, subject to the listing's current description.</p></details>
+</section>
+</main><footer><div class="container">© 2026 Practical AI Lab · Free educational QA checklist. Existing paid kits are offered via <a href="https://payhip.com" rel="noopener noreferrer">Payhip</a>. No tracking pixels or analytics.</div></footer>
+<script>
+"use strict";
+const tests=[
+["Inputs & expected behavior","The workflow accepts valid representative input","Test normal, boundary and multilingual input examples."],
+["Inputs & expected behavior","Invalid input fails with an actionable error","Check malformed fields, empty inputs, oversized payloads and wrong data types."],
+["Inputs & expected behavior","The output schema is validated","Verify required fields, formats, ordering and missing-value conventions."],
+["Inputs & expected behavior","Results are reproducible when determinism is required","Run identical input multiple times and document variability."],
+["Safety, privacy & permissions","Private information is minimized","Use only required data and confirm redaction, consent and retention."],
+["Safety, privacy & permissions","Prompt injection attempts are rejected or contained","Use malicious text embedded in documents, retrieved pages and tool output."],
+["Safety, privacy & permissions","Tools operate under least privilege","Confirm write scope, account permissions and forbidden actions."],
+["Safety, privacy & permissions","Sensitive actions have an appropriate approval gate","Require a designated approver for money, deletion, publication or data disclosure."],
+["Failure handling","Rate limits and timeouts degrade safely","Simulate provider throttling, network failure and unreachable services."],
+["Failure handling","Retries do not duplicate side effects","Prove idempotency for payments, emails, uploads and job submissions."],
+["Failure handling","Partial completion can be resumed safely","Run crash/restart tests without data loss or duplicate delivery."],
+["Failure handling","A rollback or stop mechanism works","Exercise kill switch, reversal and fallback procedure."],
+["Quality & evaluation","Outputs are checked against reference cases","Compare with known-good answers or a defined oracle."],
+["Quality & evaluation","Critical false positives and false negatives are measured","Define unacceptable error classes and test them."],
+["Quality & evaluation","Responses distinguish uncertainty from facts","Test low-confidence and conflicting-source scenarios."],
+["Quality & evaluation","Human-facing content meets brand and accessibility rules","Review language, formatting, reading order and essential warnings."],
+["Operations & release","Logs provide evidence without exposing secrets","Verify trace identifiers, error codes, retention and redacted contents."],
+["Operations & release","Budgets and resource limits are enforced","Test cost caps, quota thresholds, memory and CPU pressure."],
+["Operations & release","Alerts reach the correct responsible person","Test genuine failures and eliminate duplicate noisy notifications."],
+["Operations & release","Ownership, monitoring and handoff are documented","Identify the approver, deployment version, runbook and next review date."]
+];
+const content=document.getElementById("checklistContent");
+let checks=[],evidence=[];
+function esc(x){let y=String(x??"");if(/^[\s\uFEFF]*[=+@-]/.test(y))y="'"+y;return /[",\n\r]/.test(y)?'"'+y.replace(/"/g,'""')+'"':y}
+function render(){
+ let group=null,section=null;
+ tests.forEach(([category,name,help],i)=>{
+  if(category!==group){
+   group=category;section=document.createElement("section");section.className="checkgroup";
+   const head=document.createElement("h3");head.className="group-title";head.textContent=category;
+   section.append(head);content.append(section)
+  }
+  const item=document.createElement("div");item.className="checkitem";
+  const box=document.createElement("input");box.type="checkbox";box.id="test-"+i;box.setAttribute("aria-label","Passed: "+name);
+  box.onchange=update;checks.push(box);
+  const div=document.createElement("div"),label=document.createElement("label");label.htmlFor=box.id;label.textContent=name;
+  const p=document.createElement("p");p.className="help";p.textContent=help;
+  const ev=document.createElement("input");ev.type="text";ev.className="evidence";ev.placeholder="Evidence, ticket ID or reviewer note (optional)";
+  ev.setAttribute("aria-label","Evidence for "+name);
+  evidence.push(ev);div.append(label,p,ev);item.append(box,div);section.append(item)
+ });
+ update()
+}
+function update(){
+ const done=checks.filter(x=>x.checked).length;
+ document.getElementById("passed").textContent=done;
+ document.getElementById("remaining").textContent=tests.length-done;
+ document.getElementById("coverage").textContent=Math.round(done/tests.length*100)+"%";
+ document.getElementById("bar").style.width=(done/tests.length*100)+"%";
+ document.getElementById("progress").setAttribute("aria-valuenow",String(done))
+}
+document.getElementById("export").onclick=()=>{
+ const rows=[["category","test","status","evidence"],...tests.map((t,i)=>[t[0],t[1],checks[i].checked?"PASS":"NOT_VERIFIED",evidence[i].value.trim()])];
+ const text="\uFEFF"+rows.map(a=>a.map(esc).join(",")).join("\r\n")+"\r\n";
+ const url=URL.createObjectURL(new Blob([text],{type:"text/csv;charset=utf-8"}));
+ const a=document.createElement("a");a.href=url;a.download="pal_ai_automation_uat_matrix.csv";document.body.append(a);a.click();a.remove();
+ setTimeout(()=>URL.revokeObjectURL(url),2000)
+};
+document.getElementById("reset").onclick=()=>{
+ if(!checks.some(x=>x.checked)&&!evidence.some(x=>x.value.trim()))return;
+ if(!confirm("Clear every check and evidence note? Export your matrix first."))return;
+ checks.forEach(x=>x.checked=false);evidence.forEach(x=>x.value="");update()
+};
+render();
+window.PAL_TEST={tests,checks,evidence,esc,update}
+</script>
+</body></html>
